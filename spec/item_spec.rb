@@ -3,8 +3,8 @@ require_relative '../lib/Item'
 
 describe Item do
 
-  before(:context) do
-    @item = Item.new("Generic Item",1.99)
+  before :context do
+    @item = Item.new "Generic Item", 1.99
   end
 
   describe "Initialization" do

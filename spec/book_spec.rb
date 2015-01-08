@@ -20,9 +20,9 @@ describe Book do
   end
 
   #check that it is an extended from Item
-  describe "Inheritance" do
-  	it "is extended from item" do
-  		expect(Book.superclass).to eq(Item)
+  describe "Book's inheritance" do
+  	it "is extended from Item" do
+  		expect(@book).to be_kind_of(Item)
   	end
   end
 
@@ -43,7 +43,31 @@ describe Book do
   		@book.price = 100
   		expect(@book.price).to eq(100)
   	end
-  	# Already checked setters in Initialization
+  	it "should be able to set the description" do
+  		@book.description = "J. R. R. Tolkien"
+  		expect(@book.description).to eq("J. R. R. Tolkien")
+  	end
+  	it "should be able to get the quantity" do
+  		expect(@book.quantity).to eq(0)
+  	end
   end
 
+#check methods
+  describe "Methods" do
+    it "should be able to stock" do
+      result = @book.stock 5
+      expect(result).to eq(true)
+      expect(@book.quantity).to eq(5)
+    end
+    it "should not be able to sell more books than we have" do
+      result = @book.sell 6
+      expect(result).to eq(false)
+      expect(@book.quantity).to eq(5)
+    end
+    it "should be able to sell books and update quantity" do
+      result = @book.sell 3
+      expect(result).to eq(true)
+      expect(@book.quantity).to eq(2)
+    end    
+  end
 end
